@@ -8,14 +8,14 @@
 所以返回 [0, 1]
 */
 
-
+// 找到目标值与当前值的差值，然后查找数组中是否有当前值
 const twoSum = (arr, target) => {
     let length = arr.length;
     let res = []
     for (let i = 0; i < length; i++) {
         let diff = target - arr[i]
         let index = arr.indexOf(diff);
-        if (index != -1 && index != arr[i]) {
+        if (index != -1 && index != i) {
             res.push(i, index);
             break
         }
