@@ -27,7 +27,7 @@ var target = 17
 console.log(twoSum(nums, target))
 
 /*
-    高手的解法
+高手的解法
 var twoSum = function(nums, target) {
     var temp=[];
     for(var i=0; i<nums.length; i++){
@@ -38,5 +38,4 @@ var twoSum = function(nums, target) {
         temp[nums[i]]=i;
     }
 }
-
 */
