@@ -6,7 +6,9 @@
 给定 nums = [2, 7, 11, 15], target = 9
 因为 nums[0] + nums[1] = 2 + 7 = 9
 所以返回 [0, 1]
-*/
+*/ 
+
+
 
 // 找到目标值与当前值的差值，然后查找数组中是否有当前值
 const twoSum = (arr, target) => {
@@ -26,6 +28,7 @@ var nums = [2, 7, 11, 15];
 var target = 17
 console.log(twoSum(nums, target))
 
+// 将数组中的元素做一个映射
 /*
 高手的解法
 var twoSum = function(nums, target) {
