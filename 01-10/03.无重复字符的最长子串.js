@@ -18,5 +18,25 @@ var lengthOfLongestSubstring = function(s) {
         }
         lenArr.push(temp.length)
     }
-    return lenArr.length ? Math.max(...lenArr) : 0
+    return Math.max(...lenArr)
+};
+
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+    let maxStr = '';
+    let maxLen = 0;
+    for(let item of s) {
+        if(maxStr.indexOf(item) === -1) {
+            maxStr += item;
+        }
+        else {
+            maxStr = `${maxStr.slice(maxStr.indexOf(item)+1)}${item}`;
+        }
+        maxLen = maxStr.length > maxLen? maxStr.length: maxLen;
+    }
+    return maxLen;
 };
