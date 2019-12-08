@@ -20,14 +20,46 @@ nums2 = [3, 4]
  * @param {number[]} nums2
  * @return {number}
  */
-var findMedianSortedArrays = function(nums1, nums2) {
-    let merge = [...nums1,...nums2]
-    let sortArr = merge.sort((a,b)=>a-b)
+var findMedianSortedArrays = function (nums1, nums2) {
+    // let mergeArr = [...nums1, ...nums2]
+    // concat的效率要比三点运算符高
+    let mergeArr = nums1.concat(nums2)
+    let sortArr = mergeArr.sort((a, b) => a - b)
     let length = sortArr.length;
     let mid = length / 2;
-    if(length%2==0){ // 偶数
-        return (sortArr[mid]+sortArr[mid-1]) / 2
-    }else{
+    if (length % 2 == 0) { // 偶数
+        return (sortArr[mid] + sortArr[mid - 1]) / 2
+    } else {
         return sortArr[Math.floor(mid)]
     }
+};
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function (nums1, nums2) {
+    var temp = null
+    var position = 0
+    // 如果有一个是空数组
+    if (nums1.length == 0 || nums2.length == 0) {
+        temp = nums1.concat(nums2)
+        position = Math.floor(temp.length / 2)
+        return temp.length % 2 == 0 ? (temp[position - 1] + temp[position]) / 2 : temp[position]
+    }
+
+    for (let i = 0; i < nums1.length; i++) {
+        while (nums2[0] < nums1[i]) {
+            nums1.splice(i, 0, nums2[0])
+            nums2.shift()
+            if (nums2.length == 0)
+                break
+        }
+        if (nums2.length == 0)
+            break
+    }
+    temp = nums1.concat(nums2)
+    position = Math.floor(temp.length / 2)
+    return temp.length % 2 == 0 ? (temp[position - 1] + temp[position]) / 2 : temp[position]
 };
