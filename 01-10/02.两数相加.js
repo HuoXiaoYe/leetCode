@@ -70,11 +70,9 @@ var addTwoNumbers = function(l1, l2) {
       if (l1 != null) l1 = l1.next;
       if (l2 != null) l2 = l2.next;
     }
-  
     if (carry) {
       nextRst.next = new ListNode(carry);
     }
-  
     return result.next;
   };
 
