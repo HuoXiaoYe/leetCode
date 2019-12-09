@@ -10,12 +10,16 @@ string convert(string s, int numRows);
 */
 
 var convert = function (s, numRows) {
+    if (numRows<=1) return s
     let n = Math.floor(s.length / (numRows * 2 - 2));
     let extra = s.length % (numRows * 2 - 2);
     let extraN = extra > 0 ? (extra > numRows ? 2 : 1) : 0
     let loop = 2 * n + extraN;
-    let arr = Array(numRows).fill([]);
-    // console.log(loop)
+    // let arr = Array(numRows).fill([]);
+    let arr = []
+    for (var i = 0; i < numRows; i++) {
+        arr[i] = []
+    }
     for (let i = 0; i < loop; i++) { // 0 2 4
         if (i % 2 !== 0) { // 偶数列 //
             for (var j = numRows - 2; j >= 1; j--) {
@@ -26,17 +30,20 @@ var convert = function (s, numRows) {
             }
         } else { // 奇数列
             for (var j = 0; j < numRows; j++) {
-                console.log(j, '==', i, '=====', s[0])
+                // console.log(j, '==', i, '=====', s[0])
                 arr[j][i] = s[0];
-                console.log(arr[j][i])
+                // console.log(arr,j)
                 s = s.slice(1)
             }
         }
     }
     // console.log(arr)
-    arr.forEach((item)=>{
-        console.log(item)
+    var res = "";
+    arr.forEach((item) => {
+        res += item.join("")
     })
+    // console.log(res)
+    return res
 };
 
-convert("abcd", 3)
+console.log(convert("A", 1))
