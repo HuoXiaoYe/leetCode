@@ -7,6 +7,7 @@
  * @param {number[]} height
  * @return {number}
  */
+// 暴力算法
 var maxArea = function (height) {
     var maxV = 0;
     for (var i = 0; i < height.length; i++) {
