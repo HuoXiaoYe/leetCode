@@ -54,16 +54,16 @@
  * @param {string} str
  * @return {number}
  */
-var myAtoi = function(str) {
+var myAtoi = function (str) {
     let reg = /^([\-|\+]?\d+)(.*)/;
     str = str.trim();
-    let max = Math.pow(2,31)-1
-    let min = Math.pow(-2,31)
-    if(reg.test(str)){
+    let max = Math.pow(2, 31) - 1
+    let min = Math.pow(-2, 31)
+    if (reg.test(str)) {
         let v = parseInt(reg.exec(str)[0]);
-            v = v>max?max:v;
-            v = v<min?min:v
-            return v
+        v = v > max ? max : v;
+        v = v < min ? min : v
+        return v
     }
     return 0
 };
