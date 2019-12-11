@@ -63,3 +63,40 @@ var findMedianSortedArrays = function (nums1, nums2) {
     position = Math.floor(temp.length / 2)
     return temp.length % 2 == 0 ? (temp[position - 1] + temp[position]) / 2 : temp[position]
 };
+
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+    let totalLen=nums1.length+nums2.length;
+    let arr=[];
+    let i=j=0;
+
+    while(true){        
+        if(!nums1.length && nums2.length){
+            arr.push(nums2[0]);
+            nums2.shift();
+        }else if(!nums2.length && nums1.length){
+            arr.push(nums1[0]);
+            nums1.shift();
+        }else{
+            if(nums1[0]<nums2[0]){
+                arr.push(nums1[0]);
+                nums1.shift();
+            }else {
+                arr.push(nums2[0]);
+                nums2.shift();
+            }
+        }    
+        if(arr.length>totalLen/2){
+            if(totalLen%2!==0){
+                return arr[arr.length-1];
+            }else{
+                return (arr[arr.length-1]+arr[arr.length-2])/2;
+            }
+        }
+    }
+};
