@@ -40,6 +40,7 @@
 // };
 // [-1, 2, 1, -4]
 var threeSumClosest = function (nums, target) {
+    nums.sort((a, b) => a - b)
     var sum = 0;
     let dif = Number.MAX_SAFE_INTEGER;
     var length = nums.length
@@ -47,7 +48,6 @@ var threeSumClosest = function (nums, target) {
         let left = i + 1;
         let right = length - 1;
         while (left < right) {
-            // 
             let tempSum = nums[i] + nums[left] + nums[right];
             if (tempSum > target) {
                 right--
@@ -56,7 +56,6 @@ var threeSumClosest = function (nums, target) {
             } else {
                 return tempSum;
             }
-            console.log(tempSum,"===")
             if (Math.abs(tempSum - target) < Math.abs(dif)) {
                 sum = tempSum;
                 dif = Math.abs(tempSum - target)
@@ -65,6 +64,4 @@ var threeSumClosest = function (nums, target) {
     }
     return sum
 };
-// -3 -4 1 ==> -3 -4  2 1 -4 => -1
-// 2
-console.log(threeSumClosest([-1, 2, 1, -4], 1))
+console.log(threeSumClosest([1, 2, 4, 8, 16, 32, 64, 128], 82))
