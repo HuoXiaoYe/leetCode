@@ -10,7 +10,7 @@ string convert(string s, int numRows);
 */
 
 var convert = function (s, numRows) {
-    if (numRows<=1) return s
+    if (numRows <= 1) return s
     let n = Math.floor(s.length / (numRows * 2 - 2));
     let extra = s.length % (numRows * 2 - 2);
     let extraN = extra > 0 ? (extra > numRows ? 2 : 1) : 0
@@ -46,4 +46,25 @@ var convert = function (s, numRows) {
     return res
 };
 
-console.log(convert("A", 1))
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function (s, numRows) {
+    var a = "";
+    var g = 2 * (numRows - 1);
+    if (numRows < 2) return s;
+    for (var j = 0; j < numRows; j++) {
+        var b = "";
+        var c = s.length / numRows;
+        for (var i = 0; i <= c; i++) {
+            if (j != 0 && j != (numRows - 1) && i > 0) {
+                b += s.substr((i * g) - j, 1);
+            }
+            b += s.substr(j + i * g, 1)
+        }
+        a += b;
+    }
+    return a;
+};
