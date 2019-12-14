@@ -17,6 +17,13 @@
  * }
  */
 /**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
  * @param {ListNode} head
  * @param {number} n
  * @return {ListNode}
@@ -29,10 +36,12 @@ var removeNthFromEnd = function(head, n) {
     let temp2 = head
     let cur = 0;
     let prev = 0;
+    let flag = true 
     let delPrev = temp2;
     while(temp1){
         cur++ // 第一个节点
         if(cur-prev>=n+1){ // n + 1 = 3
+            flag = false
             delPrev = temp2;
             temp2 = temp2.next
             prev++
@@ -40,7 +49,7 @@ var removeNthFromEnd = function(head, n) {
         temp1 = temp1.next;
     }
     // console.log(delPrev,head)
-    if(delPrev == head){
+    if(delPrev == head&&flag){
         if(n==1){
             head.next = null
         }else{
