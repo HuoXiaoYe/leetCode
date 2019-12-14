@@ -22,21 +22,33 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-    if(!head.next) return ListNode()
+    if (n == 0) return head;
+    if (head == null) return null;
+    if (head.next == null) return null;
     let temp1 = head;
-    let temp2 = head;
+    let temp2 = head
     let cur = 0;
     let prev = 0;
-    let delPrev = null;
+    let delPrev = temp2;
     while(temp1){
         cur++ // 第一个节点
-        if(cur-prev>=n+1){
+        if(cur-prev>=n+1){ // n + 1 = 3
             delPrev = temp2;
             temp2 = temp2.next
             prev++
         }
         temp1 = temp1.next;
     }
-    delPrev.next = delPrev.next.next;
+    // console.log(delPrev,head)
+    if(delPrev == head){
+        if(n==1){
+            head.next = null
+        }else{
+            head = head.next
+            console.log(head)
+        }
+    }else{
+        delPrev.next = delPrev.next.next ? delPrev.next.next : null;
+    }
     return head
 };
