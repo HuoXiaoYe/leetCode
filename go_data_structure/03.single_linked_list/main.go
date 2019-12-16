@@ -37,6 +37,36 @@ func addByID(head *singleList, node *singleList) {
 	}
 }
 
+// 更新节点
+func update(head *singleList, node *singleList) {
+	var temp = head
+	for {
+		if temp == nil {
+			break
+		}
+		if temp.id == node.id {
+			temp.name = node.name
+		}
+		temp = temp.next
+	}
+}
+
+// 删除一个节点
+func delNode(head *singleList, nodeID int) {
+	var temp = head
+	for {
+		if temp.next == nil {
+			fmt.Println("没有你要删除的节点，id=", nodeID)
+			break
+		}
+		if temp.next.id == nodeID {
+			temp.next = temp.next.next
+			break
+		}
+		temp = temp.next
+	}
+}
+
 func main() {
 	var head *singleList = &singleList{
 		id:   0,
@@ -50,6 +80,11 @@ func main() {
 	var node2 *singleList = &singleList{
 		id:   2,
 		name: "tuanjie2",
+		next: nil,
+	}
+	var newNode2 *singleList = &singleList{
+		id:   2,
+		name: "xiaoye",
 		next: nil,
 	}
 	var node3 *singleList = &singleList{
@@ -73,6 +108,10 @@ func main() {
 	addByID(head, node4)
 	addByID(head, node3)
 	addByID(head, node444)
+	update(head, newNode2)
+	delNode(head, 4)
+	delNode(head, 4)
+	delNode(head, 4)
 	var temp = head.next
 	for {
 		if temp == nil {
