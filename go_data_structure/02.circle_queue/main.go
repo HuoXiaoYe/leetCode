@@ -4,14 +4,14 @@ import "fmt"
 
 // 实现环形队列
 
-type Queue struct {
+type queue struct {
 	maxSize int
 	front   int
 	rear    int
 	data    []int
 }
 
-func (q *Queue) initQueue() {
+func (q *queue) initqueue() {
 	q.data = make([]int, q.maxSize)
 }
 
@@ -19,7 +19,7 @@ func (q *Queue) initQueue() {
 存 取 长度 空
 */
 // push
-func (q *Queue) push(val int) {
+func (q *queue) push(val int) {
 	// 判断队列是否已经满了
 	if (q.rear+1)%q.maxSize == q.front {
 		fmt.Println("队列已满")
@@ -30,12 +30,12 @@ func (q *Queue) push(val int) {
 }
 
 // empty
-func (q *Queue) isEmpty() bool {
+func (q *queue) isEmpty() bool {
 	return q.rear == q.front
 }
 
 // get
-func (q *Queue) get() int {
+func (q *queue) get() int {
 	if q.isEmpty() {
 		fmt.Println("队列为空")
 		return -1
@@ -46,17 +46,17 @@ func (q *Queue) get() int {
 }
 
 // 长度
-func (q *Queue) length() int {
+func (q *queue) length() int {
 	return (q.rear + q.maxSize - q.front) % q.maxSize
 }
 
 func main() {
-	var q Queue = Queue{
+	var q queue = queue{
 		front:   0,
 		rear:    0,
 		maxSize: 6,
 	}
-	q.initQueue()
+	q.initqueue()
 	fmt.Println(q.isEmpty())
 	q.push(20)
 	var _ = q.get()
