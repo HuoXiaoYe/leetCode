@@ -29,8 +29,6 @@ var mergeTwoLists = function (l1, l2) {
     while (l1 !== null || l2 !== null) {
         let x = l1 ? l1.val : Number.MAX_VALUE
         let y = l2 ? l2.val : Number.MAX_VALUE
-        console.log(x ,"============", y)
-        // console.log(Number.MAX_VALUE)
         if (x > y) {
             temp.next = new ListNode(y);
             temp = temp.next
@@ -42,7 +40,7 @@ var mergeTwoLists = function (l1, l2) {
             temp = temp.next
             l1 = l1 ? l1.next : null
             l2 = l2 ? l2.next : null
-        } else { // x < y
+        } else {
             temp.next = new ListNode(x);
             temp = temp.next
             l1 = l1 ? l1.next : null
@@ -50,9 +48,3 @@ var mergeTwoLists = function (l1, l2) {
     }
     return res.next
 };
-
-let l1 = { val: 1, next: { val: 2, next: { val: 5, next: null } } }
-let l2 = { val: 1, next: { val: 4, next: { val: 6, next: null } } }
-
-let rs = mergeTwoLists(l1, l2)
-console.log(rs)
