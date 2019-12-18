@@ -23,7 +23,6 @@ var swapPairs = function(head) {
     let temp2 = head.next
     // 长度为奇数  需要考虑吗？？
     while(true){
-        // 跳出条件 不确定
         if(temp1==null||temp2==null) break
         // js中没有指针 怎么进行节点交换呢
         [temp1.val, temp2.val] = [temp2.val,temp1.val]
