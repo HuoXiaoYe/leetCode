@@ -52,6 +52,7 @@ func (s *Stack) pop() string {
 	}
 	s.top--
 	var rs = s.data[s.top]
+	s.data[s.top] = ""
 	return rs
 }
 
@@ -148,6 +149,6 @@ func main() {
 		// fmt.Println("计算了一次")
 		// fmt.Println(numStack.data)
 	}
-	fmt.Println(numStack.peek())
+	fmt.Println(numStack.data[0])
 	// fmt.Println(operaStack.data)
 }
