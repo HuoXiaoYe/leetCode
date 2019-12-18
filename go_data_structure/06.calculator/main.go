@@ -105,9 +105,7 @@ func main() {
 	numStack.initStack(10)
 	var operaStack = &Stack{}
 	operaStack.initStack(10)
-	// 18 - 20 + 9 = 7
-	// 18 + 20 + 9 = 47
-	var expression string = "3*6+4*5+9"
+	var expression string = "3*6-4*5-9"
 	for i := 0; i < len(expression); i++ {
 		var item = string(expression[i])
 		if isOpera(item) { //是一个运算符
@@ -123,8 +121,6 @@ func main() {
 					var num1 = numStack.pop()
 					var num2 = numStack.pop()
 					var rs = cal(num2, num1, curOpera)
-					// fmt.Println(num1, "===", num2, "====", curOpera)
-					// fmt.Println(rs)
 					numStack.push(rs)
 					operaStack.push(item)
 				}
@@ -144,11 +140,7 @@ func main() {
 		var num1 = numStack.pop()
 		var num2 = numStack.pop()
 		var rs = cal(num2, num1, curOpera)
-		// fmt.Println(rs)
 		numStack.push(rs)
-		// fmt.Println("计算了一次")
-		// fmt.Println(numStack.data)
 	}
 	fmt.Println(numStack.data[0])
-	// fmt.Println(operaStack.data)
 }
