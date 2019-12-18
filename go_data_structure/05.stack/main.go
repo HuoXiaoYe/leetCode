@@ -52,22 +52,5 @@ func (s *Stack) pop() int {
 }
 
 func main() {
-	var s *Stack = &Stack{
-		maxSize: 5,
-	}
-	s.initStack(5)
-	// fmt.Println(s.isEmpty())
-	s.push(1)
-	s.push(2)
-	s.push(3)
-	s.push(4)
-	s.push(5)
-	fmt.Println(s.pop())
-	fmt.Println(s.pop())
-	fmt.Println(s.pop())
-	fmt.Println(s.pop())
-	fmt.Println(s.pop())
-	fmt.Println(s.pop())
-	// fmt.Println(s.top)
-	// fmt.Println(s.maxSize)
+
 }
