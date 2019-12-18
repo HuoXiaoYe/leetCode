@@ -25,14 +25,6 @@
   ListNode { val: 2, next: ListNode { val: 6, next: null } } ]
 */
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-
 function ListNode(val) {
     this.val = val;
     this.next = null;
@@ -41,11 +33,10 @@ function ListNode(val) {
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-var mergeKLists = function (lists) {
-    // console.log(lists)
-    var res = new ListNode(-1);
-    var temp = res;
-    var arr = []
+let mergeKLists = function (lists) {
+    let res = new ListNode(-1);
+    let temp = res;
+    let arr = []
     lists.forEach(item => {
         while (true) {
             if (item == null) break
@@ -59,13 +50,5 @@ var mergeKLists = function (lists) {
         temp.next = new ListNode(item);
         temp = temp.next
     })
-    // console.log(res.next)
     return res.next
 };
-
-var lists = [{ val: 1, next: { val: 4, next: null } },
-{ val: 1, next: { val: 3, next: null } },
-{ val: 2, next: { val: 6, next: null } }];
-
-
-mergeKLists(lists)
