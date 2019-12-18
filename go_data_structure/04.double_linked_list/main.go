@@ -2,7 +2,9 @@ package main
 
 import "fmt"
 
-// 双向链表的增删改查
+/**
+Node...
+*/
 type Node struct {
 	id   int
 	name string
@@ -44,6 +46,65 @@ func addByOrder(head *Node, node *Node) {
 	}
 }
 
+// 根据id删除对应的节点
+func delByID(head *Node, id int) {
+	if head.next == nil {
+		fmt.Println("链表为空，不能删除")
+		return
+	}
+	var temp = head.next
+	for {
+		if temp.id == id { // 删除temp
+			temp.pre.next = temp.next
+			if temp.next != nil {
+				temp.next.pre = temp.next
+			}
+			break
+		}
+		if temp.next == nil {
+			break
+		}
+		temp = temp.next
+	}
+}
+
+// 根据id修改节点
+func updateNode(head *Node, node *Node) {
+	if head.next == nil {
+		fmt.Println("链表为空，不能修改")
+		return
+	}
+	var temp *Node = head
+	for {
+		if temp.id == node.id { //找到了对应的节点
+			temp.name = node.name
+		}
+		if temp.next == nil {
+			break
+		}
+		temp = temp.next
+	}
+}
+
+// 根据id的值查找对应的节点
+
+func fingNodeByID(head *Node, id int) *Node {
+	if head.next == nil {
+		fmt.Println("链表为空,拒绝查找")
+		return nil
+	}
+	var temp *Node = head
+	for {
+		if temp.id == id {
+			return temp
+		}
+		if temp.next == nil {
+			return nil
+		}
+		temp = temp.next
+	}
+}
+
 func main() {
 	var head *Node = &Node{
 		id: 0,
@@ -65,16 +126,24 @@ func main() {
 		id:   4,
 		name: "tuanjie4",
 	}
+	var newNode *Node = &Node{
+		id:   4,
+		name: "xiaoye",
+	}
 	addByOrder(head, node1)
 	addByOrder(head, node4)
+	delByID(head, 1)
 	addByOrder(head, node3)
 	addByOrder(head, node2)
-	var temp = head.next
-	for {
-		fmt.Println(temp.name)
-		if temp.next == nil {
-			break
-		}
-		temp = temp.next
-	}
+	updateNode(head, newNode)
+	var rs = fingNodeByID(head, 4)
+	fmt.Println(rs)
+	// var temp = head.next
+	// for {
+	// 	fmt.Println(temp.name)
+	// 	if temp.next == nil {
+	// 		break
+	// 	}
+	// 	temp = temp.next
+	// }
 }
