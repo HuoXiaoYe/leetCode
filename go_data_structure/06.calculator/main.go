@@ -143,4 +143,10 @@ func main() {
 		numStack.push(rs)
 	}
 	fmt.Println(numStack.data[0])
+
+	const max int = 4
+	var arr [max]int = [max]int{1, 2, 3, 4}
+	arr[0] = 20
+	// var arr = make([]int, max)
+	fmt.Println(arr)
 }
