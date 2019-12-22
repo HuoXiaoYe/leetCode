@@ -63,4 +63,6 @@ func main() {
 	var arr []int = []int{1, 45, 2, 15, 792, 1642, 7798, 456, 123}
 	var rs = bucketSort(arr)
 	fmt.Println(rs)
+
+	// var mid = left + (right-left)*(target-arr[left])/(arr[right]-arr[left])
 }
