@@ -25,6 +25,7 @@ type EmployeeList struct {
 func (e *EmployeeList) add(emp *Employee) {
 	if e.head == nil {
 		e.head = emp
+		return
 	}
 	var temp = e.head
 	for {
@@ -35,9 +36,26 @@ func (e *EmployeeList) add(emp *Employee) {
 	}
 	temp.next = emp
 }
+func (e *EmployeeList) show(i int) {
+	if e.head == nil {
+		fmt.Printf("第%d条链表为空\n", i+1)
+		return
+	}
+	var temp = e.head
+	fmt.Printf("第%d条链表信息如下", i+1)
+	for {
+		fmt.Printf("=>id:%d=name:%s", temp.id, temp.name)
+		if temp.next == nil {
+			break
+		}
+		temp = temp.next
+	}
+	fmt.Println()
+}
 func (e *EmployeeList) find(id int) {
 	if e.head == nil {
 		fmt.Println("该链表为空")
+		return
 	}
 	var temp = e.head
 	for {
@@ -74,17 +92,44 @@ func (e *EmployeeTab) find(id int) {
 	var location = id % e.maxSize
 	e.employeeArr[location].find(id)
 }
+func (e *EmployeeTab) show() {
+	for i := 0; i < e.maxSize; i++ {
+		e.employeeArr[i].show(i)
+	}
+}
 
 func main() {
 	var employeeTab = EmployeeTab{}
 	employeeTab.init(5)
 	var people1 = &Employee{
 		id:   3,
-		name: "tuanjie",
+		name: "tuanjie1",
 		age:  20,
 	}
+	var people2 = &Employee{
+		id:   30,
+		name: "tuanjie2",
+		age:  13,
+	}
+	var people3 = &Employee{
+		id:   309,
+		name: "tuanjie3",
+		age:  14,
+	}
+	var people4 = &Employee{
+		id:   413,
+		name: "tuanjie4",
+		age:  12,
+	}
+	var people5 = &Employee{
+		id:   233,
+		name: "tuanjie5",
+		age:  21,
+	}
 	employeeTab.add(people1)
-	employeeTab.find(3)
-	// employeeTab.employeeArr
-	// fmt.Println(employeeTab.employeeArr)
+	employeeTab.add(people2)
+	employeeTab.add(people3)
+	employeeTab.add(people4)
+	employeeTab.add(people5)
+	employeeTab.show()
 }
