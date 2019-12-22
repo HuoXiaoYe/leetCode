@@ -71,6 +71,31 @@ func (e *EmployeeList) find(id int) {
 	}
 
 }
+func (e *EmployeeList) del(id int) {
+	if e.head == nil {
+		fmt.Printf("没有找到你要删除的员工，id为%d", id)
+		return
+	}
+	// 删除头节点
+	if e.head.id == id {
+		e.head = e.head.next
+		fmt.Printf("删除了id为%d的员工.\n", id)
+		return
+	}
+	var temp = e.head
+	for {
+		if temp.next == nil {
+			fmt.Printf("没有找到你要删除的员工，id为%d", id)
+			return
+		}
+		if temp.next.id == id {
+			fmt.Printf("删除了id为%d的员工.\n", id)
+			temp.next = temp.next.next
+			return
+		}
+		temp = temp.next
+	}
+}
 
 type EmployeeTab struct {
 	maxSize     int
@@ -91,6 +116,10 @@ func (e *EmployeeTab) add(employee *Employee) {
 func (e *EmployeeTab) find(id int) {
 	var location = id % e.maxSize
 	e.employeeArr[location].find(id)
+}
+func (e *EmployeeTab) del(id int) {
+	var location = id % e.maxSize
+	e.employeeArr[location].del(id)
 }
 func (e *EmployeeTab) show() {
 	for i := 0; i < e.maxSize; i++ {
@@ -131,5 +160,11 @@ func main() {
 	employeeTab.add(people3)
 	employeeTab.add(people4)
 	employeeTab.add(people5)
+	employeeTab.del(3)
+	employeeTab.del(413)
+	employeeTab.del(233)
+	employeeTab.del(30)
+	employeeTab.del(309)
 	employeeTab.show()
+
 }
