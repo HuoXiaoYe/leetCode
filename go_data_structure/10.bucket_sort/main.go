@@ -40,18 +40,16 @@ func bucketSort(arr []int) []int {
 			var cur = arr[j] / int(temp) % 10
 			bucket[cur] = append(bucket[cur], arr[j])
 		}
-		fmt.Println(bucket)
 		for k := 0; k < len(bucket); k++ {
 			if len(bucket[k]) != 0 { //说明这个筒子中有数据
 				sort.Sort(bucket[k])
 				// 将排序好的桶子中的数据放入到 arr中
 				for m := 0; m < len(bucket[k]); m++ {
-					arr[tempIndex] = bucket[k][m]
+					arr[tempIndex] = bucket[k][m] //因改使用简单排序 但这里为了方便 使用了go语言内置的排序方法
 					tempIndex++
 				}
 			}
 		}
-		// fmt.Println(arr)
 	}
 
 	return arr
@@ -61,7 +59,4 @@ func main() {
 	var arr []int = []int{1, 45, 2, 15, 792, 1642, 7798, 456, 123}
 	var rs = bucketSort(arr)
 	fmt.Println(rs)
-	fmt.Println(179 / 10000 % 10)
 }
-
-// qq393797949
