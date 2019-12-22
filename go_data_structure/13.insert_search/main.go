@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func insertSearch(arr []int, target int, left int, right int) int {
 	if left > right || target > arr[right] || target < arr[left] {
@@ -22,4 +24,7 @@ func main() {
 	fmt.Println("15==", i)
 	var j = insertSearch(arr, 300, 0, 8)
 	fmt.Println("300======", j)
+
+	// fmt.Println(math.Max(1, 2)) // 好弱啊 只能比较两个元素
+	// math.Max(x float64, y float64)
 }
