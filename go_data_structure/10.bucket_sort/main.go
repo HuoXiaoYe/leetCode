@@ -32,7 +32,7 @@ func bucketSort(arr []int) []int {
 	// fmt.Println(max)
 	var maxElLen = len(string(max)) // 最大数字的长度
 
-	for i := 0; i < maxElLen; i++ { // i 代表 个位数 十位数 百位数的循环
+	for i := 0; i < maxElLen+1; i++ { // i 代表 个位数 十位数 百位数的循环
 		var tempIndex = 0
 		var bucket [10]MyIntSort
 		var temp = math.Pow(10, float64(i))
@@ -40,6 +40,7 @@ func bucketSort(arr []int) []int {
 			var cur = arr[j] / int(temp) % 10
 			bucket[cur] = append(bucket[cur], arr[j])
 		}
+		fmt.Println(bucket)
 		for k := 0; k < len(bucket); k++ {
 			if len(bucket[k]) != 0 { //说明这个筒子中有数据
 				sort.Sort(bucket[k])
@@ -50,6 +51,7 @@ func bucketSort(arr []int) []int {
 				}
 			}
 		}
+		// fmt.Println(arr)
 	}
 
 	return arr
@@ -59,4 +61,7 @@ func main() {
 	var arr []int = []int{1, 45, 2, 15, 792, 1642, 7798, 456, 123}
 	var rs = bucketSort(arr)
 	fmt.Println(rs)
+	fmt.Println(179 / 10000 % 10)
 }
+
+// qq393797949
