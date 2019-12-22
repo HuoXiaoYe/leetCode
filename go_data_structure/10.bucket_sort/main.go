@@ -41,7 +41,11 @@ func bucketSort(arr []int) []int {
 		}
 		for k := 0; k < len(bucket); k++ {
 			if len(bucket[k]) != 0 { //说明这个筒子中有数据
-				// sort.Sort(bucket[k]) //为什么这个地方不排序也是可以的
+				// sort.Sort(bucket[k])
+				// 为什么这个地方不排序也是可以的
+				// 先按个位数排序 再按百位数排序 同一个桶子中的数 在当前排序时 要求的位数是一样的
+				// 但是接下来排序就可以分出大小了
+
 				// 将排序好的桶子中的数据放入到 arr中
 				for m := 0; m < len(bucket[k]); m++ {
 					arr[tempIndex] = bucket[k][m] //因改使用简单排序 但这里为了方便 使用了go语言内置的排序方法
@@ -49,6 +53,7 @@ func bucketSort(arr []int) []int {
 				}
 			}
 		}
+		fmt.Println(bucket)
 	}
 
 	return arr
