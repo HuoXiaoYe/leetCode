@@ -1,5 +1,8 @@
 package main
 
+/*
+树的 前序遍历 中序遍历 后序遍历
+*/
 import "fmt"
 
 type heroNode struct {
@@ -68,6 +71,8 @@ func main() {
 		id:   8,
 		name: "刘备8",
 	}
+	// 设置节点应该是用递归的方式
+	// 但是这里先使用 手动设置节点
 	root.left = node3
 	root.right = node7
 	node3.left = node2
