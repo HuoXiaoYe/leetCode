@@ -15,70 +15,70 @@
  *     this.val = val;
  *     this.next = null;
  * }
+ * @param
+ * @url
  */
 /**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
+  @param {ListNode} l1
+  @param {ListNode} l2
+  @return {ListNode}
  */
 
-var addTwoNumbers = function(l1, l2) {
-    var result = new ListNode();
-    var temp = result;
-    let num = 0;
-    let params = 0;
-    console.log(l1)
-    console.log(l2)
-    while(l1||l2){
-        let x = (l1 != null) ? l1.val : 0;
-        let y = (l2 != null) ? l2.val : 0;
-        num = (x + y + params) % 10
-        temp.val = num;
-        params = x + y + params >= 10 ? 1 : 0;
-        if(l1!=null) l1 = l1.next;
-        if(l2!=null) l2 = l2.next;
-        if(l1||l2){
-            temp.next = new ListNode();
-            temp = temp.next
-        }
+var addTwoNumbers = function (l1, l2) {
+  var result = new ListNode();
+  var temp = result;
+  let num = 0;
+  let params = 0;
+  console.log(l1)
+  console.log(l2)
+  while (l1 || l2) {
+    let x = (l1 != null) ? l1.val : 0;
+    let y = (l2 != null) ? l2.val : 0;
+    num = (x + y + params) % 10
+    temp.val = num;
+    params = x + y + params >= 10 ? 1 : 0;
+    if (l1 != null) l1 = l1.next;
+    if (l2 != null) l2 = l2.next;
+    if (l1 || l2) {
+      temp.next = new ListNode();
+      temp = temp.next
     }
-    if(params){
-        temp.next = new ListNode(params)
-    }
-    return result
+  }
+  if (params) {
+    temp.next = new ListNode(params)
+  }
+  return result
 };
 
-/*
-var addTwoNumbers = function(l1, l2) {
-    let result = new ListNode(null);
-    let nextRst = result;
-    // 进位
-    let carry = 0; // 传递给下一层级的值
-    let val = 0; // 传递给当前层级的值
-  
-    while (l1 != null || l2 != null) {
-      // todo
-      let x = l1 != null ? l1.val : 0;
-      let y = l2 != null ? l2.val : 0;
-  
-      val = (x + y + carry) % 10;
-      carry = Math.floor((x + y + carry) / 10);
-  
-      nextRst.next = new ListNode(val);
-      nextRst = nextRst.next;
-  
-      if (l1 != null) l1 = l1.next;
-      if (l2 != null) l2 = l2.next;
-    }
-    if (carry) {
-      nextRst.next = new ListNode(carry);
-    }
-    return result.next;
-  };
+
+var addTwoNumbers = function (l1, l2) {
+  let result = new ListNode(null);
+  let nextRst = result;
+  // 进位
+  let carry = 0; // 传递给下一层级的值
+  let val = 0; // 传递给当前层级的值
+
+  while (l1 != null || l2 != null) {
+    // todo
+    let x = l1 != null ? l1.val : 0;
+    let y = l2 != null ? l2.val : 0;
+
+    val = (x + y + carry) % 10;
+    carry = Math.floor((x + y + carry) / 10);
+
+    nextRst.next = new ListNode(val);
+    nextRst = nextRst.next;
+
+    if (l1 != null) l1 = l1.next;
+    if (l2 != null) l2 = l2.next;
+  }
+  if (carry) {
+    nextRst.next = new ListNode(carry);
+  }
+  return result.next;
+};
 
 
-
-*/
 
 /**
  * @param {Integer} val
@@ -99,17 +99,17 @@ var addTwoNumbers = function (l1, l2) {
   let first = node = new ListNode(val % 10);
 
   while ((l1 && l1.next) || (l2 && l2.next) || val >= 10) {
-      l1 = l1 && l1.next;
-      l2 = l2 && l2.next;
+    l1 = l1 && l1.next;
+    l2 = l2 && l2.next;
 
-      if (l1 || l2) {
-          val = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + (val >= 10 ? 1 : 0);
-          node = node.next = new ListNode(val % 10);
-          continue;
-      }
+    if (l1 || l2) {
+      val = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + (val >= 10 ? 1 : 0);
+      node = node.next = new ListNode(val % 10);
+      continue;
+    }
 
-      val = val % 10;
-      node = node.next = new ListNode(1);
+    val = val % 10;
+    node = node.next = new ListNode(1);
   }
 
   return first;
