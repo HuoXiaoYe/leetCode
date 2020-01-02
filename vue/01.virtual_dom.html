@@ -16,13 +16,10 @@
             <li>music</li>
             <li>code</li>
         </ul>
+        <hr />
     </div>
     <script>
         const node = document.getElementsByTagName("div")[0]
-        console.log(node.nodeName)
-        /** 
-         * @params() node 根元素
-        */
         function createVirtualDom(node) {
             let VNode = {};
             if (node.nodeType == 1) { // 元素节点
@@ -47,6 +44,28 @@
             return VNode
         }
         console.log(createVirtualDom(node))
+        console.log(createRealDom(createVirtualDom(node)))
+
+
+        // 将虚拟DOM转换为真正的DOM
+        function createRealDom(nodeObj) {
+            let el = null
+            if (nodeObj.type === 1) { //元素节点
+                el = document.createElement(nodeObj.tag);
+                for (let key in nodeObj.data) {
+                    if (nodeObj.data.hasOwnProperty(key)) {
+                        el[key] = nodeObj.data[key]
+                    }
+                }
+                for (let i = 0; i < nodeObj.children.length; i++) {
+                    el.appendChild(createRealDom(nodeObj.children[i]))
+                }
+            }else if(nodeObj.type === 3){
+                el = document.createTextNode(nodeObj.value)
+            }
+            return el
+        }
+        node.appendChild(createRealDom(createVirtualDom(node)))
     </script>
 </body>
 
