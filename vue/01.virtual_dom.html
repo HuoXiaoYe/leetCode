@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>虚拟DOM</title>
+</head>
+
+<body>
+    <div id="root">
+        <p class="name">name:tuanjie"</p>
+        <ul class="hobby">
+            <li>game</li>
+            <li>music</li>
+            <li>code</li>
+        </ul>
+    </div>
+    <script>
+        const node = document.getElementsByTagName("div")[0]
+        console.log(node.nodeName)
+        // 将DOM对象转换为虚拟DOM
+        function createVirtualDom(node) {
+            var VNode = {};
+            // 根据nodeType判断当前元素是 文本节点还是元素节点
+            if (node.nodeType == 1) { // 元素节点
+                VNode.tag = node.nodeName.toLowerCase();
+                VNode.data = {}
+                let attr = node.attributes;
+                for (var i = 0; i < attr.length; i++) {
+                    VNode.data[attr[i].nodeName] = attr[i].nodeValue
+                }
+                let childNodeArr = node.childNodes
+                // console.log(childNodeArr)
+            }
+            return VNode
+        }
+        console.log(createVirtualDom(node))
+    </script>
+</body>
+
+</html>
