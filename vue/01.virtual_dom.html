@@ -54,13 +54,14 @@
                 el = document.createElement(nodeObj.tag);
                 for (let key in nodeObj.data) {
                     if (nodeObj.data.hasOwnProperty(key)) {
-                        el[key] = nodeObj.data[key]
+                        // el[key] = nodeObj.data[key]
+                        el.setAttribute(key, nodeObj.data[key])
                     }
                 }
                 for (let i = 0; i < nodeObj.children.length; i++) {
                     el.appendChild(createRealDom(nodeObj.children[i]))
                 }
-            }else if(nodeObj.type === 3){
+            } else if (nodeObj.type === 3) {
                 el = document.createTextNode(nodeObj.value)
             }
             return el
