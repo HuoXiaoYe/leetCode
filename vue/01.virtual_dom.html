@@ -20,19 +20,29 @@
     <script>
         const node = document.getElementsByTagName("div")[0]
         console.log(node.nodeName)
-        // 将DOM对象转换为虚拟DOM
+        /** 
+         * @params() node 根元素
+        */
         function createVirtualDom(node) {
-            var VNode = {};
-            // 根据nodeType判断当前元素是 文本节点还是元素节点
+            let VNode = {};
             if (node.nodeType == 1) { // 元素节点
                 VNode.tag = node.nodeName.toLowerCase();
+                VNode.type = node.nodeType
                 VNode.data = {}
                 let attr = node.attributes;
-                for (var i = 0; i < attr.length; i++) {
+                for (let i = 0; i < attr.length; i++) {
                     VNode.data[attr[i].nodeName] = attr[i].nodeValue
                 }
                 let childNodeArr = node.childNodes
-                // console.log(childNodeArr)
+                VNode.children = [];
+                for (let i = 0; i < childNodeArr.length; i++) {
+                    VNode.children.push(createVirtualDom(childNodeArr[i]))
+                }
+
+            } else if (node.nodeType === 3) { // 文本节点
+                VNode.tag = undefined;
+                VNode.type = node.nodeType
+                VNode.value = node.nodeValue
             }
             return VNode
         }
